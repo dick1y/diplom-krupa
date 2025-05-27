@@ -1,0 +1,21 @@
+.statistics .section-block-text {padding: 0;}
+.statistics  {background: url(../img/statistics/statistics-image.jpg) 100% 100%;width: 100%;padding: 100px 0;}
+.statistics__inner {color: rgba(255, 255, 255, 1);}
+.statistics-text__uptitle {color: rgba(255, 255, 255, 0.7);}
+.statistics-img{display: block;box-sizing: border-box;width: 100%;}
+.statistics-text__suptitle {color: rgba(255, 255, 255, 0.8);}
+.statiscs-deals {display: grid;grid-template-columns: repeat(4, auto);grid-column-gap: 40px;text-align: center;grid-gap: 10px;}
+.statiscs-deals__numbers {font-size: 60px;border-bottom: 3px solid rgba(251, 67, 67, 1);font-family: Roboto;font-weight: 400;padding-bottom: 10px;}
+.statistics-deals__name {margin-top: 20px;}
+
+
+@media  screen and (max-width: 1375px) {
+    .statistics {padding: 50px 0;}
+}
+@media  screen and (max-width: 1080px) {
+    .statiscs-deals {grid-template-columns: repeat(2, auto);}
+}
+@media  screen and (max-width: 768px) {
+    .statiscs-deals__numbers {font-size: 24px;text-align: left;}
+    .statistics-deals__name {font-size: 16px;text-align: left;}
+}
