@@ -71,7 +71,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   formData.forEach((value, key) => data[key] = value);
 
   try {
-    const response = await fetch('https://formspree.io/f/mayvlxyz', {
+    const response = await fetch('https://formspree.io/f/xnnvvbg', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
