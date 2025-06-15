@@ -74,6 +74,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     const response = await fetch('https://formspree.io/f/mayvlxyz', {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
@@ -83,10 +84,12 @@ document.getElementById('contact-form').addEventListener('submit', async functio
       alert('Спасибо! Ваше сообщение отправлено.');
       form.reset();
     } else {
-      alert('Ошибка при отправке. Попробуйте позже.');
+      const err = await response.json();
+      console.error('Ошибка от Formspree:', err);
+      alert('Ошибка при отправке: ' + (err.message || 'Попробуйте позже.'));
     }
   } catch (error) {
-    console.error('Ошибка:', error);
+    console.error('Сетевая ошибка:', error);
     alert('Сетевая ошибка при отправке формы.');
   }
 });
