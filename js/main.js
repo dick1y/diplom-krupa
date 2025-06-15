@@ -61,3 +61,32 @@ $(document).ready(function(){
         });
     });
 })
+
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const form = this;
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => data[key] = value);
+
+  try {
+    const response = await fetch('https://formspree.io/f/mayvlxyz', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      alert('Спасибо! Ваше сообщение отправлено.');
+      form.reset();
+    } else {
+      alert('Ошибка при отправке. Попробуйте позже.');
+    }
+  } catch (error) {
+    console.error('Ошибка:', error);
+    alert('Сетевая ошибка при отправке формы.');
+  }
+});
