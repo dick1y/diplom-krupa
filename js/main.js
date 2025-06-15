@@ -62,34 +62,37 @@ $(document).ready(function(){
     });
 })
 
-document.getElementById('contact-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document.querySelectorAll('form').forEach(form => {
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
 
-  const form = this;
-  const formData = new FormData(form);
-  const data = {};
-  formData.forEach((value, key) => data[key] = value);
+		const formData = new FormData(form);
+		const data = {};
+		formData.forEach((value, key) => {
+			data[key] = value;
+		});
 
-  try {
-    const response = await fetch('https://formspree.io/f/xnnvvbgv', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+		try {
+			const response = await fetch('https://formspree.io/f/xnnvvbgv', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json'
+				},
+				body: JSON.stringify(data)
+			});
 
-    if (response.ok) {
-      alert('Спасибо! Ваше сообщение отправлено.');
-      form.reset();
-    } else {
-      const err = await response.json();
-      console.error('Ошибка от Formspree:', err);
-      alert('Ошибка при отправке: ' + (err.message || 'Попробуйте позже.'));
-    }
-  } catch (error) {
-    console.error('Сетевая ошибка:', error);
-    alert('Сетевая ошибка при отправке формы.');
-  }
+			if (response.ok) {
+				alert('Сообщение успешно отправлено!');
+				form.reset();
+			} else {
+				const err = await response.json();
+				console.error('Ошибка от Formspree:', err);
+				alert('Ошибка при отправке. Попробуйте позже.');
+			}
+		} catch (error) {
+			console.error('Ошибка сети:', error);
+			alert('Ошибка сети. Попробуйте позже.');
+		}
+	});
 });
